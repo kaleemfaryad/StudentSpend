@@ -1,10 +1,60 @@
-# OSX
-#
+# ==========================================
+# macOS
+# ==========================================
 .DS_Store
 
-# Xcode
-#
+# ==========================================
+# Windows
+# ==========================================
+Thumbs.db
+
+# ==========================================
+# Node.js
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# ==========================================
+# Environment Variables
+# ==========================================
+.env
+.env.*
+!.env.example
+
+# ==========================================
+# React Native / Metro / Expo
+# ==========================================
+.metro-health-check*
+.expo/
+*.jsbundle
+
+# ==========================================
+# Android / Gradle
+# ==========================================
+.gradle/
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+
+# IntelliJ / Android Studio
+.idea/
+*.iml
+*.hprof
+.cxx/
+.kotlin/
+
+# Android signing
+*.keystore
+!debug.keystore
+
+# ==========================================
+# iOS / Xcode
+# ==========================================
 build/
+DerivedData/
+xcuserdata/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -13,63 +63,46 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
 *.xccheckout
 *.moved-aside
-DerivedData
+*.xcuserstate
 *.hmap
 *.ipa
-*.xcuserstate
 **/.xcode.env.local
 
-# Android/IntelliJ
-#
-build/
-.idea
-.gradle
-local.properties
-*.iml
-*.hprof
-.cxx/
-*.keystore
-!debug.keystore
-.kotlin/
+# CocoaPods
+**/Pods/
+vendor/bundle/
 
-# node.js
-#
-node_modules/
-npm-debug.log
-yarn-error.log
-
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
-
+# ==========================================
+# Fastlane
+# ==========================================
 **/fastlane/report.xml
 **/fastlane/Preview.html
-**/fastlane/screenshots
-**/fastlane/test_output
+**/fastlane/screenshots/
+**/fastlane/test_output/
 
-# Bundle artifact
-*.jsbundle
+# ==========================================
+# Testing
+# ==========================================
+coverage/
 
-# Ruby / CocoaPods
-**/Pods/
-/vendor/bundle/
-
-# Temporary files created by Metro to check the health of the file watcher
-.metro-health-check*
-
-# testing
-/coverage
-
+# ==========================================
 # Yarn
+# ==========================================
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# ==========================================
+# VS Code
+# ==========================================
+.vscode/
+
+# ==========================================
+# Logs
+# ==========================================
+*.log
