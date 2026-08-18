@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 import authRoutes from './routes/authRoutes';
 import expenseRoutes from './routes/expenseRoutes';
@@ -6,11 +7,26 @@ import budgetRoutes from './routes/budgetRoutes';
 
 const app = express();
 
+// ========================================
+// MIDDLEWARE
+// ========================================
+
+app.use(cors());
+
 app.use(express.json());
 
-const PORT = 5000;
+// ========================================
+// PORT
+// ========================================
 
-// Health check
+const PORT = Number(
+  process.env.PORT || 5000,
+);
+
+// ========================================
+// HEALTH CHECK
+// ========================================
+
 app.get('/api/health', (_req, res) => {
   res.json({
     status: 'OK',
@@ -18,13 +34,35 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-// API routes
-app.use('/api/auth', authRoutes);
-app.use('/api/expenses', expenseRoutes);
-app.use('/api/budget', budgetRoutes);
+// ========================================
+// API ROUTES
+// ========================================
 
-app.listen(PORT, () => {
-  console.log(
-    `StudentSpend API running on port ${PORT}`,
-  );
-});
+app.use(
+  '/api/auth',
+  authRoutes,
+);
+
+app.use(
+  '/api/expenses',
+  expenseRoutes,
+);
+
+app.use(
+  '/api/budget',
+  budgetRoutes,
+);
+
+// ========================================
+// START SERVER
+// ========================================
+
+app.listen(
+  PORT,
+  '0.0.0.0',
+  () => {
+    console.log(
+      `StudentSpend API running on port ${PORT}`,
+    );
+  },
+);
