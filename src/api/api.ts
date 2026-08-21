@@ -1,4 +1,4 @@
-const API_URL = 'http://10.0.2.2:5000/api';
+const API_URL = 'https://studentspend-api.onrender.com/api';
 
 export const apiRequest = async <T>(
   endpoint: string,
