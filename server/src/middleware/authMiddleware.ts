@@ -1,9 +1,18 @@
-import {Request, Response, NextFunction} from 'express';
+import {
+  Request,
+  Response,
+  NextFunction,
+} from 'express';
+
 import jwt from 'jsonwebtoken';
 
 interface JwtPayload {
   userId: string;
 }
+
+const JWT_SECRET =
+  process.env.JWT_SECRET ||
+  'studentspend-dev-secret';
 
 const authMiddleware = (
   req: Request,
@@ -11,23 +20,28 @@ const authMiddleware = (
   next: NextFunction,
 ) => {
   try {
+
     const authHeader =
       req.headers.authorization;
 
     if (!authHeader) {
       return res.status(401).json({
-        message: 'Authorization header required.',
+        message:
+          'Authorization header required.',
       });
     }
 
-    if (!authHeader.startsWith('Bearer ')) {
+    if (
+      !authHeader.startsWith('Bearer ')
+    ) {
       return res.status(401).json({
-        message: 'Invalid authorization format.',
+        message:
+          'Invalid authorization format.',
       });
     }
 
     const token =
-      authHeader.split(' ')[1];
+      authHeader.substring(7).trim();
 
     if (!token) {
       return res.status(401).json({
@@ -38,8 +52,15 @@ const authMiddleware = (
     const decoded =
       jwt.verify(
         token,
-        process.env.JWT_SECRET as string,
+        JWT_SECRET,
       ) as JwtPayload;
+
+    if (!decoded.userId) {
+      return res.status(401).json({
+        message:
+          'Invalid token payload.',
+      });
+    }
 
     // Attach logged-in user's ID
     (req as any).userId =
@@ -51,14 +72,17 @@ const authMiddleware = (
     );
 
     next();
+
   } catch (error) {
+
     console.log(
       'Authentication error:',
       error,
     );
 
     return res.status(401).json({
-      message: 'Invalid or expired token.',
+      message:
+        'Invalid or expired token.',
     });
   }
 };
