@@ -272,6 +272,7 @@ const styles = StyleSheet.create({
     padding: 15,
     marginBottom: 15,
     fontSize: 16,
+    color: '#111827',
   },
 
   button: {

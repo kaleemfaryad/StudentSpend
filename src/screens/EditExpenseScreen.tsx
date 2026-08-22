@@ -367,6 +367,7 @@ const styles = StyleSheet.create({
     padding: 15,
     marginBottom: 20,
     fontSize: 16,
+    color: '#111827',
   },
 
 

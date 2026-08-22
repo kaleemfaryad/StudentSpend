@@ -2,6 +2,11 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import {
+  Image,
+  View,
+  Text,
+} from 'react-native';
 
 import {
   NavigationContainer,
@@ -179,12 +184,37 @@ const AppNavigator = () => {
           <>
 
             <Stack.Screen
-              name="Home"
-              options={{
-                title:
-                  'StudentSpend',
-              }}
-            >
+  name="Home"
+  options={{
+    headerTitle: () => (
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}
+      >
+        <Image
+          source={require('../../assets/logo.jpg')}
+          style={{
+            width: 70,
+            height: 65,
+            resizeMode: 'contain',
+          }}
+        />
+
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: 'bold',
+            color: '#111827',
+          }}
+        >
+          StudentSpend
+        </Text>
+      </View>
+    ),
+  }}
+>
               {props => (
                 <HomeScreen
                   {...props}
